@@ -58,6 +58,13 @@ class AlarmManager: ObservableObject {
         }
     }
     
+    func toggleAlarm(){
+        if isTimerPaused {
+            resumeAlarm()
+        } else {
+            pauseAlarm()
+        }
+    }
     func pauseAlarm(){
         alarm?.invalidate()
         isTimerPaused = true
@@ -159,6 +166,16 @@ struct AlarmView: View {
     @State private var selectedSeconds = ""
     @State private var selectedMinutes = ""
 
+    
+    var iconForButton: String {
+        if alarmManager.isTimerPaused {
+            return "play.fill"
+        } else if alarmManager.isTimerRunning {
+            return "pause.fill"
+        } else {
+            return "play.fill"
+        }
+    }
 
     
     var body: some View{
@@ -173,11 +190,44 @@ struct AlarmView: View {
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
                                 .frame(width: 80)
+                            
                         }
 
-                        Text("Selected Duration:  \(selectedMinutes) minutes, \(selectedSeconds) seconds")
+                        Text("\(selectedMinutes) minutes, \(selectedSeconds) seconds")
                             .padding()
+            
+            Button(action: {
+                alarmManager.isTimerPaused ? alarmManager.toggleAlarm() : alarmManager.startAlarm()
+            }) {
+                Image(systemName: iconForButton)
+                    .padding()
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .frame(width: 10, height: 10)
+            }
+            Button(action: {
+                alarmManager.stopAlarm()
+            }) {
+                Image(systemName: "stop.fill")
+                    .padding()
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .frame(width: 10, height: 10)
+            }
+            .disabled(!alarmManager.isTimerRunning)
 
+            Button(action: {
+                onDelete()
+            }) {
+                Image(systemName: "trash.fill")
+                    .padding()
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .frame(width: 10, height: 10)
+            }
+
+
+                        
         }
     }
     
