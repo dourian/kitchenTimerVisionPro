@@ -1,90 +1,102 @@
 import SwiftUI
 
-class TimerManager: ObservableObject {
+
+
+protocol TimeManager: ObservableObject {
+    func start()
+    func toggle()
+    func pause()
+    func resume()
+    func stop()
+    func update()
+}
+
+
+class TimerManager: ObservableObject, TimeManager {
     @Published var counter = 0
     private var timer: Timer?
     @Published var isTimerRunning = false
     @Published var isTimerPaused = false
     @Published var timerName: String = ""
-
-    func startTimer() {
+    
+    func start() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            self?.updateCounter()
+            self?.update()
         }
         isTimerRunning = true
         isTimerPaused = false
     }
 
-    func toggleTimer() {
+    func toggle() {
         if isTimerPaused {
-            resumeTimer()
+            resume()
         } else {
-            pauseTimer()
+            pause()
         }
     }
 
-    func pauseTimer() {
+    func pause() {
         timer?.invalidate()
         isTimerPaused = true
     }
 
-    func resumeTimer() {
-        startTimer()
+    func resume() {
+        start()
     }
 
-    func stopTimer() {
+    func stop() {
         timer?.invalidate()
         isTimerRunning = false
         isTimerPaused = false
         counter = 0
     }
 
-    func updateCounter() {
+    func update() {
         counter += 1
     }
 }
 
-class AlarmManager: ObservableObject {
+class AlarmManager: ObservableObject, TimeManager {
     @Published var remainingTime  = 60
     private var alarm: Timer?
     @Published var isTimerRunning = false
     @Published var isTimerPaused = false
     @Published var alarmName:String = ""
     
-    func startAlarm(){
+    func start() {
         alarm =
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            self?.updateCounter()
+            self?.update()
         }
     }
     
-    func toggleAlarm(){
+    func toggle(){
         if isTimerPaused {
-            resumeAlarm()
+            resume()
         } else {
-            pauseAlarm()
+            pause()
         }
     }
-    func pauseAlarm(){
+    func pause(){
         alarm?.invalidate()
         isTimerPaused = true
     }
     
-    func resumeAlarm(){
-        startAlarm()
+    func resume(){
+        start()
     }
     
-    func stopAlarm(){
+    func stop(){
         alarm?.invalidate()
         remainingTime = -1
     }
     
-    func updateCounter(){
+    func update(){
         if remainingTime > 0{
             remainingTime -= 1
         }
         else{
-            stopAlarm()
+            stop()
         }
     }
     
@@ -105,7 +117,7 @@ struct TimerView: View {
                 .padding(.top, 20)
                 .offset(y: 5)
             Button(action: {
-                timerManager.isTimerRunning ? timerManager.toggleTimer() : timerManager.startTimer()
+                timerManager.isTimerRunning ? timerManager.toggle() : timerManager.start()
             }) {
                 Image(systemName: iconForButton)
                     .padding()
@@ -116,7 +128,7 @@ struct TimerView: View {
             .disabled(timerManager.isTimerPaused && !timerManager.isTimerRunning)
 
             Button(action: {
-                timerManager.stopTimer()
+                timerManager.stop()
             }) {
                 Image(systemName: "stop.fill")
                     .padding()
@@ -197,7 +209,7 @@ struct AlarmView: View {
                             .padding()
             
             Button(action: {
-                alarmManager.isTimerPaused ? alarmManager.toggleAlarm() : alarmManager.startAlarm()
+                alarmManager.isTimerPaused ? alarmManager.toggle() : alarmManager.start()
             }) {
                 Image(systemName: iconForButton)
                     .padding()
@@ -206,7 +218,7 @@ struct AlarmView: View {
                     .frame(width: 10, height: 10)
             }
             Button(action: {
-                alarmManager.stopAlarm()
+                alarmManager.stop()
             }) {
                 Image(systemName: "stop.fill")
                     .padding()
@@ -239,24 +251,22 @@ struct AlarmView: View {
 }
 
 struct ContentView: View {
-    @State private var timerManagers: [TimerManager] = []
-    @State private var alarmManagers:
-        [AlarmManager] = []
+    @State private var timeManagers: [Any] = []
 
     var body: some View {
         VStack() {
             ScrollView {
                 VStack {
-                    ForEach(timerManagers.indices, id: \.self) { index in
-                        TimerView(timerManager: timerManagers[index], onDelete: {
-                            deleteTimer(at: index)
-                        })
-                    }
-                }
-                VStack{
-                    ForEach(alarmManagers.indices, id: \.self) {
-                        index in AlarmView(alarmManager: alarmManagers[index], onDelete:{ deleteAlarm(at: index)
-                        })
+                    ForEach(timeManagers.indices, id: \.self) { index in
+                        if let timerManager = timeManagers[index] as? TimerManager {
+                            TimerView(timerManager: timerManager, onDelete: {
+                                delete(at: index)
+                            })
+                        } else if let alarmManager = timeManagers[index] as? AlarmManager {
+                            AlarmView(alarmManager: alarmManager, onDelete: {
+                                delete(at: index)
+                            })
+                        }
                     }
                 }
             }
@@ -290,23 +300,20 @@ struct ContentView: View {
 
     func addTimer() {
         let newTimerManager = TimerManager()
-        timerManagers.append(newTimerManager)
+        timeManagers.append(newTimerManager)
     }
     
     func addAlarm() {
         let newAlarmManager = AlarmManager()
-        alarmManagers.append(newAlarmManager)
+        timeManagers.append(newAlarmManager)
     }
     
 
-    func deleteTimer(at index: Int) {
-        timerManagers[index].stopTimer()
-        timerManagers.remove(at: index)
-    }
-    
-    func deleteAlarm(at index: Int){
-        alarmManagers[index].stopAlarm()
-        alarmManagers.remove(at: index)
+    func delete(at index: Int) {
+        if let timeManager = timeManagers[index] as? any TimeManager {
+                timeManager.stop()
+            }
+            timeManagers.remove(at: index)
     }
 }
 
