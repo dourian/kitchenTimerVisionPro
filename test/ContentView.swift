@@ -1,7 +1,5 @@
 import SwiftUI
 
-
-
 protocol TimeManager: ObservableObject {
     func start()
     func toggle()
@@ -11,14 +9,13 @@ protocol TimeManager: ObservableObject {
     func update()
 }
 
-
 class TimerManager: ObservableObject, TimeManager {
     @Published var counter = 0
     private var timer: Timer?
     @Published var isTimerRunning = false
     @Published var isTimerPaused = false
     @Published var timerName: String = ""
-    
+
     func start() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             self?.update()
@@ -57,49 +54,56 @@ class TimerManager: ObservableObject, TimeManager {
 }
 
 class AlarmManager: ObservableObject, TimeManager {
-    @Published var remainingTime  = 60
+    @Published var remainingTime = 0
     private var alarm: Timer?
     @Published var isTimerRunning = false
     @Published var isTimerPaused = false
-    @Published var alarmName:String = ""
-    
+    @Published var alarmName: String = ""
+
     func start() {
         alarm =
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            self?.update()
-        }
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+                self?.update()
+            }
+        isTimerRunning = true
+        isTimerPaused = false
     }
-    
-    func toggle(){
+
+    func toggle() {
         if isTimerPaused {
             resume()
         } else {
             pause()
         }
     }
-    func pause(){
+
+    func pause() {
         alarm?.invalidate()
         isTimerPaused = true
     }
-    
-    func resume(){
+
+    func resume() {
         start()
     }
-    
-    func stop(){
+
+    func stop() {
         alarm?.invalidate()
-        remainingTime = -1
+        remainingTime = 0
+        isTimerRunning = false
+        isTimerPaused = false
     }
-    
-    func update(){
-        if remainingTime > 0{
+
+    func update() {
+        if remainingTime > 0 {
             remainingTime -= 1
-        }
-        else{
+        } else {
             stop()
         }
     }
-    
+
+    func setTime(newTime: Int) {
+        remainingTime = newTime
+    }
 }
 
 struct TimerView: View {
@@ -109,9 +113,9 @@ struct TimerView: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 16) {
             TextField("Timer Name", text: $timerManager.timerName)
-                            .padding()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 200)
+                .padding()
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .frame(width: 200)
             Text(formattedTime(timerManager.counter))
                 .font(.largeTitle)
                 .padding(.top, 20)
@@ -175,10 +179,10 @@ struct AlarmView: View {
         AlarmManager
     var onDelete: () -> Void
     @State private var selectedTime = Date()
-    @State private var selectedSeconds = ""
-    @State private var selectedMinutes = ""
+    @State private var minutesInput = ""
+    @State private var secondsInput = ""
 
-    
+
     var iconForButton: String {
         if alarmManager.isTimerPaused {
             return "play.fill"
@@ -189,27 +193,33 @@ struct AlarmView: View {
         }
     }
 
-    
-    var body: some View{
-        HStack(alignment: .firstTextBaseline, spacing: 16){
-            HStack(spacing: 10) {
-                            TextField("Minutes", text: $selectedMinutes)
+    var body: some View {
+        HStack(alignment: .firstTextBaseline, spacing: 16) {
+            if !alarmManager.isTimerRunning {
+                            TextField("Minutes", text: $minutesInput)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
                                 .frame(width: 80)
 
-                            TextField("Seconds", text: $selectedSeconds)
+                            TextField("Seconds", text: $secondsInput)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
                                 .frame(width: 80)
-                            
                         }
-
-                        Text("\(selectedMinutes) minutes, \(selectedSeconds) seconds")
-                            .padding()
             
+            
+            if (alarmManager.isTimerRunning) {
+                Text("\(alarmManager.remainingTime / 60) minutes, \(alarmManager.remainingTime % 60) seconds")
+                            .padding()
+            }
+
             Button(action: {
-                alarmManager.isTimerPaused ? alarmManager.toggle() : alarmManager.start()
+                let minutes = Int(minutesInput) ?? 0
+                    let seconds = Int(secondsInput) ?? 0
+                    let totalSeconds = minutes * 60 + seconds
+
+                alarmManager.setTime(newTime: totalSeconds)
+                alarmManager.toggle()
             }) {
                 Image(systemName: iconForButton)
                     .padding()
@@ -217,6 +227,7 @@ struct AlarmView: View {
                     .cornerRadius(10)
                     .frame(width: 10, height: 10)
             }
+            
             Button(action: {
                 alarmManager.stop()
             }) {
@@ -237,12 +248,9 @@ struct AlarmView: View {
                     .cornerRadius(10)
                     .frame(width: 10, height: 10)
             }
-
-
-                        
         }
     }
-    
+
     func formattedTime(_ time: Date) -> String {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
@@ -254,7 +262,7 @@ struct ContentView: View {
     @State private var timeManagers: [Any] = []
 
     var body: some View {
-        VStack() {
+        VStack {
             ScrollView {
                 VStack {
                     ForEach(timeManagers.indices, id: \.self) { index in
@@ -271,7 +279,7 @@ struct ContentView: View {
                 }
             }
 
-            HStack(){
+            HStack {
                 Button(action: {
                     addTimer()
                 }) {
@@ -295,25 +303,23 @@ struct ContentView: View {
             }
         }
         .padding(.vertical, 20)
-        
     }
 
     func addTimer() {
         let newTimerManager = TimerManager()
         timeManagers.append(newTimerManager)
     }
-    
+
     func addAlarm() {
         let newAlarmManager = AlarmManager()
         timeManagers.append(newAlarmManager)
     }
-    
 
     func delete(at index: Int) {
         if let timeManager = timeManagers[index] as? any TimeManager {
-                timeManager.stop()
-            }
-            timeManagers.remove(at: index)
+            timeManager.stop()
+        }
+        timeManagers.remove(at: index)
     }
 }
 
