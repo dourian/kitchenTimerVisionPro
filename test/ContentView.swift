@@ -175,7 +175,7 @@ struct TimerView: View {
 }
 
 struct CountDownTimerPicker: UIViewRepresentable {
-    @Binding var selectedDuration: TimeInterval
+    @Binding public var selectedDuration: TimeInterval
 
     func makeUIView(context: Context) -> UIDatePicker {
         let datePicker = UIDatePicker()
@@ -245,18 +245,15 @@ struct AlarmView: View {
             if (alarmManager.isTimerRunning) {
                 Text(formattedTime(alarmManager.remainingTime))
                     .font(.largeTitle)
-                    .padding(.top, 20)
-                    .offset(y: 5)
+                    .padding()
+                    .offset()
+                
             }
 
             Button(action: {
                 if (!alarmManager.isTimerRunning){
                     
-                    let minutes = Int(minutesInput) ?? 0
-                    let seconds = Int(secondsInput) ?? 0
-                    let totalSeconds = minutes * 60 + seconds
-                    
-                    alarmManager.setTime(newTime: totalSeconds)
+                    alarmManager.setTime(newTime: Int(selectedDuration))
                     alarmManager.toggle()
                 }
                 else{
@@ -295,10 +292,11 @@ struct AlarmView: View {
     }
     
     func formattedTime(_ seconds: Int) -> String {
+        let hours = seconds / 3600
         let minutes = (seconds % 3600) / 60
         let seconds = seconds % 60
 
-        return String(format: "%02d:%02d", minutes, seconds)
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 
 }
