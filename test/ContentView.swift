@@ -174,13 +174,46 @@ struct TimerView: View {
     }
 }
 
+struct CountDownTimerPicker: UIViewRepresentable {
+    @Binding var selectedDuration: TimeInterval
+
+    func makeUIView(context: Context) -> UIDatePicker {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .countDownTimer
+        datePicker.addTarget(context.coordinator, action: #selector(Coordinator.dateChanged(_:)), for: .valueChanged)
+        return datePicker
+    }
+
+    func updateUIView(_ uiView: UIDatePicker, context: Context) {
+        uiView.countDownDuration = selectedDuration
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject {
+        var parent: CountDownTimerPicker
+
+        init(_ parent: CountDownTimerPicker) {
+            self.parent = parent
+        }
+
+        @objc func dateChanged(_ sender: UIDatePicker) {
+            parent.selectedDuration = sender.countDownDuration
+        }
+    }
+}
+
+
+
 struct AlarmView: View {
     @ObservedObject var alarmManager:
         AlarmManager
     var onDelete: () -> Void
-    @State private var selectedTime = Date()
     @State private var minutesInput = ""
     @State private var secondsInput = ""
+    @State private var selectedDuration: TimeInterval = 60
 
 
     var iconForButton: String {
@@ -192,34 +225,43 @@ struct AlarmView: View {
             return "play.fill"
         }
     }
+    
+    
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 16) {
+        HStack(alignment: .center, spacing: 16) {
             if !alarmManager.isTimerRunning {
-                            TextField("Minutes", text: $minutesInput)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .keyboardType(.numberPad)
-                                .frame(width: 80)
-
-                            TextField("Seconds", text: $secondsInput)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .keyboardType(.numberPad)
-                                .frame(width: 80)
+                
+                    
+                    CountDownTimerPicker(selectedDuration: $selectedDuration)
+                        .labelsHidden()
+                        .frame(width: 180, height: 120)
+                        .aspectRatio(contentMode: .fill)
+                        .clipped()
+                                    
                         }
             
             
             if (alarmManager.isTimerRunning) {
-                Text("\(alarmManager.remainingTime / 60) minutes, \(alarmManager.remainingTime % 60) seconds")
-                            .padding()
+                Text(formattedTime(alarmManager.remainingTime))
+                    .font(.largeTitle)
+                    .padding(.top, 20)
+                    .offset(y: 5)
             }
 
             Button(action: {
-                let minutes = Int(minutesInput) ?? 0
+                if (!alarmManager.isTimerRunning){
+                    
+                    let minutes = Int(minutesInput) ?? 0
                     let seconds = Int(secondsInput) ?? 0
                     let totalSeconds = minutes * 60 + seconds
-
-                alarmManager.setTime(newTime: totalSeconds)
-                alarmManager.toggle()
+                    
+                    alarmManager.setTime(newTime: totalSeconds)
+                    alarmManager.toggle()
+                }
+                else{
+                    alarmManager.toggle()
+                }
             }) {
                 Image(systemName: iconForButton)
                     .padding()
@@ -249,13 +291,16 @@ struct AlarmView: View {
                     .frame(width: 10, height: 10)
             }
         }
+        .padding(10)
+    }
+    
+    func formattedTime(_ seconds: Int) -> String {
+        let minutes = (seconds % 3600) / 60
+        let seconds = seconds % 60
+
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 
-    func formattedTime(_ time: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        return formatter.string(from: time)
-    }
 }
 
 struct ContentView: View {
