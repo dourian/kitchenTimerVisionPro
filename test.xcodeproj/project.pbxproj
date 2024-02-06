@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81568DAB2B71E2F300D88A3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81568DAA2B71E2F300D88A3C /* LaunchScreen.storyboard */; };
+		81568DAD2B71E4B700D88A3C /* image-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 81568DAC2B71E4B700D88A3C /* image-2.png */; };
 		85A6158E2B143CF60034CD91 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 85A6158D2B143CF60034CD91 /* RealityKitContent */; };
 		85A615902B143CF60034CD91 /* testApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6158F2B143CF60034CD91 /* testApp.swift */; };
 		85A615922B143CF60034CD91 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A615912B143CF60034CD91 /* ContentView.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		81568DAA2B71E2F300D88A3C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81568DAC2B71E4B700D88A3C /* image-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image-2.png"; path = "../../../Downloads/image-2.png"; sourceTree = "<group>"; };
 		85A615882B143CF60034CD91 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A6158C2B143CF60034CD91 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		85A6158F2B143CF60034CD91 /* testApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testApp.swift; sourceTree = "<group>"; };
@@ -58,9 +62,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81568DAE2B71EDD000D88A3C /* Preview Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Preview Images";
+			sourceTree = "<group>";
+		};
 		85A6157F2B143CF60034CD91 = {
 			isa = PBXGroup;
 			children = (
+				81568DAE2B71EDD000D88A3C /* Preview Images */,
 				85A6158A2B143CF60034CD91 /* test */,
 				85A6158B2B143CF60034CD91 /* Packages */,
 				85A615A02B143CF70034CD91 /* testTests */,
@@ -80,12 +92,14 @@
 		85A6158A2B143CF60034CD91 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				81568DAC2B71E4B700D88A3C /* image-2.png */,
 				85A6158F2B143CF60034CD91 /* testApp.swift */,
 				85A615912B143CF60034CD91 /* ContentView.swift */,
 				85F179D52B3164930044FBCC /* SecondView.swift */,
 				85A615932B143CF70034CD91 /* Assets.xcassets */,
 				85A615982B143CF70034CD91 /* Info.plist */,
 				85A615952B143CF70034CD91 /* Preview Content */,
+				81568DAA2B71E2F300D88A3C /* LaunchScreen.storyboard */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -198,6 +212,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81568DAD2B71E4B700D88A3C /* image-2.png in Resources */,
+				81568DAB2B71E2F300D88A3C /* LaunchScreen.storyboard in Resources */,
 				85A615972B143CF70034CD91 /* Preview Assets.xcassets in Resources */,
 				85A615942B143CF70034CD91 /* Assets.xcassets in Resources */,
 			);
@@ -372,6 +388,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -397,6 +414,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
