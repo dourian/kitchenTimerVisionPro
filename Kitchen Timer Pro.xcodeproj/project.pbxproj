@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		81568DAB2B71E2F300D88A3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81568DAA2B71E2F300D88A3C /* LaunchScreen.storyboard */; };
-		81568DAD2B71E4B700D88A3C /* image-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 81568DAC2B71E4B700D88A3C /* image-2.png */; };
 		85A6158E2B143CF60034CD91 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 85A6158D2B143CF60034CD91 /* RealityKitContent */; };
 		85A615902B143CF60034CD91 /* testApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6158F2B143CF60034CD91 /* testApp.swift */; };
 		85A615922B143CF60034CD91 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A615912B143CF60034CD91 /* ContentView.swift */; };
 		85A615942B143CF70034CD91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85A615932B143CF70034CD91 /* Assets.xcassets */; };
 		85A615972B143CF70034CD91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85A615962B143CF70034CD91 /* Preview Assets.xcassets */; };
 		85A615A22B143CF70034CD91 /* testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A615A12B143CF70034CD91 /* testTests.swift */; };
+		85D4181C2B71F1D3001624C9 /* image-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D4181B2B71F1D3001624C9 /* image-2.png */; };
 		85F179D62B3164930044FBCC /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F179D52B3164930044FBCC /* SecondView.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,16 +30,16 @@
 
 /* Begin PBXFileReference section */
 		81568DAA2B71E2F300D88A3C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		81568DAC2B71E4B700D88A3C /* image-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image-2.png"; path = "../../../Downloads/image-2.png"; sourceTree = "<group>"; };
-		85A615882B143CF60034CD91 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85A615882B143CF60034CD91 /* Kitchen Timer Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kitchen Timer Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A6158C2B143CF60034CD91 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		85A6158F2B143CF60034CD91 /* testApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testApp.swift; sourceTree = "<group>"; };
 		85A615912B143CF60034CD91 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		85A615932B143CF70034CD91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85A615962B143CF70034CD91 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		85A615982B143CF70034CD91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		85A6159D2B143CF70034CD91 /* testTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85A6159D2B143CF70034CD91 /* Kitchen Timer ProTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kitchen Timer ProTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A615A12B143CF70034CD91 /* testTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testTests.swift; sourceTree = "<group>"; };
+		85D4181B2B71F1D3001624C9 /* image-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-2.png"; sourceTree = "<group>"; };
 		85F179D52B3164930044FBCC /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,9 +73,9 @@
 			isa = PBXGroup;
 			children = (
 				81568DAE2B71EDD000D88A3C /* Preview Images */,
-				85A6158A2B143CF60034CD91 /* test */,
+				85A6158A2B143CF60034CD91 /* Kitchen Timer Pro */,
 				85A6158B2B143CF60034CD91 /* Packages */,
-				85A615A02B143CF70034CD91 /* testTests */,
+				85A615A02B143CF70034CD91 /* KitchenTimerProTests */,
 				85A615892B143CF60034CD91 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,16 +83,16 @@
 		85A615892B143CF60034CD91 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				85A615882B143CF60034CD91 /* test.app */,
-				85A6159D2B143CF70034CD91 /* testTests.xctest */,
+				85A615882B143CF60034CD91 /* Kitchen Timer Pro.app */,
+				85A6159D2B143CF70034CD91 /* Kitchen Timer ProTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		85A6158A2B143CF60034CD91 /* test */ = {
+		85A6158A2B143CF60034CD91 /* Kitchen Timer Pro */ = {
 			isa = PBXGroup;
 			children = (
-				81568DAC2B71E4B700D88A3C /* image-2.png */,
+				85D4181B2B71F1D3001624C9 /* image-2.png */,
 				85A6158F2B143CF60034CD91 /* testApp.swift */,
 				85A615912B143CF60034CD91 /* ContentView.swift */,
 				85F179D52B3164930044FBCC /* SecondView.swift */,
@@ -101,7 +101,7 @@
 				85A615952B143CF70034CD91 /* Preview Content */,
 				81568DAA2B71E2F300D88A3C /* LaunchScreen.storyboard */,
 			);
-			path = test;
+			path = "Kitchen Timer Pro";
 			sourceTree = "<group>";
 		};
 		85A6158B2B143CF60034CD91 /* Packages */ = {
@@ -120,20 +120,20 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		85A615A02B143CF70034CD91 /* testTests */ = {
+		85A615A02B143CF70034CD91 /* KitchenTimerProTests */ = {
 			isa = PBXGroup;
 			children = (
 				85A615A12B143CF70034CD91 /* testTests.swift */,
 			);
-			path = testTests;
+			path = KitchenTimerProTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		85A615872B143CF60034CD91 /* test */ = {
+		85A615872B143CF60034CD91 /* Kitchen Timer Pro */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 85A615A52B143CF70034CD91 /* Build configuration list for PBXNativeTarget "test" */;
+			buildConfigurationList = 85A615A52B143CF70034CD91 /* Build configuration list for PBXNativeTarget "Kitchen Timer Pro" */;
 			buildPhases = (
 				85A615842B143CF60034CD91 /* Sources */,
 				85A615852B143CF60034CD91 /* Frameworks */,
@@ -143,17 +143,17 @@
 			);
 			dependencies = (
 			);
-			name = test;
+			name = "Kitchen Timer Pro";
 			packageProductDependencies = (
 				85A6158D2B143CF60034CD91 /* RealityKitContent */,
 			);
 			productName = test;
-			productReference = 85A615882B143CF60034CD91 /* test.app */;
+			productReference = 85A615882B143CF60034CD91 /* Kitchen Timer Pro.app */;
 			productType = "com.apple.product-type.application";
 		};
-		85A6159C2B143CF70034CD91 /* testTests */ = {
+		85A6159C2B143CF70034CD91 /* Kitchen Timer ProTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 85A615A82B143CF70034CD91 /* Build configuration list for PBXNativeTarget "testTests" */;
+			buildConfigurationList = 85A615A82B143CF70034CD91 /* Build configuration list for PBXNativeTarget "Kitchen Timer ProTests" */;
 			buildPhases = (
 				85A615992B143CF70034CD91 /* Sources */,
 				85A6159A2B143CF70034CD91 /* Frameworks */,
@@ -164,9 +164,9 @@
 			dependencies = (
 				85A6159F2B143CF70034CD91 /* PBXTargetDependency */,
 			);
-			name = testTests;
+			name = "Kitchen Timer ProTests";
 			productName = testTests;
-			productReference = 85A6159D2B143CF70034CD91 /* testTests.xctest */;
+			productReference = 85A6159D2B143CF70034CD91 /* Kitchen Timer ProTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -188,7 +188,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 85A615832B143CF60034CD91 /* Build configuration list for PBXProject "test" */;
+			buildConfigurationList = 85A615832B143CF60034CD91 /* Build configuration list for PBXProject "Kitchen Timer Pro" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -201,8 +201,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				85A615872B143CF60034CD91 /* test */,
-				85A6159C2B143CF70034CD91 /* testTests */,
+				85A615872B143CF60034CD91 /* Kitchen Timer Pro */,
+				85A6159C2B143CF70034CD91 /* Kitchen Timer ProTests */,
 			);
 		};
 /* End PBXProject section */
@@ -212,7 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81568DAD2B71E4B700D88A3C /* image-2.png in Resources */,
+				85D4181C2B71F1D3001624C9 /* image-2.png in Resources */,
 				81568DAB2B71E2F300D88A3C /* LaunchScreen.storyboard in Resources */,
 				85A615972B143CF70034CD91 /* Preview Assets.xcassets in Resources */,
 				85A615942B143CF70034CD91 /* Assets.xcassets in Resources */,
@@ -252,7 +252,7 @@
 /* Begin PBXTargetDependency section */
 		85A6159F2B143CF70034CD91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 85A615872B143CF60034CD91 /* test */;
+			target = 85A615872B143CF60034CD91 /* Kitchen Timer Pro */;
 			targetProxy = 85A6159E2B143CF70034CD91 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -383,18 +383,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"test/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "\"Kitchen Timer Pro/Preview Content\"";
+				DEVELOPMENT_TEAM = 4W5S44W27D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Kitchen Timer Pro";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dorianchen.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jenniferwong.kitchenTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -409,18 +411,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"test/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "\"Kitchen Timer Pro/Preview Content\"";
+				DEVELOPMENT_TEAM = 4W5S44W27D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Kitchen Timer Pro";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dorianchen.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jenniferwong.kitchenTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -444,7 +448,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/test.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/test";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kitchen Timer Pro.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Kitchen Timer Pro";
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
@@ -464,7 +468,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/test.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/test";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kitchen Timer Pro.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Kitchen Timer Pro";
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
@@ -472,7 +476,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		85A615832B143CF60034CD91 /* Build configuration list for PBXProject "test" */ = {
+		85A615832B143CF60034CD91 /* Build configuration list for PBXProject "Kitchen Timer Pro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				85A615A32B143CF70034CD91 /* Debug */,
@@ -481,7 +485,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		85A615A52B143CF70034CD91 /* Build configuration list for PBXNativeTarget "test" */ = {
+		85A615A52B143CF70034CD91 /* Build configuration list for PBXNativeTarget "Kitchen Timer Pro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				85A615A62B143CF70034CD91 /* Debug */,
@@ -490,7 +494,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		85A615A82B143CF70034CD91 /* Build configuration list for PBXNativeTarget "testTests" */ = {
+		85A615A82B143CF70034CD91 /* Build configuration list for PBXNativeTarget "Kitchen Timer ProTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				85A615A92B143CF70034CD91 /* Debug */,
